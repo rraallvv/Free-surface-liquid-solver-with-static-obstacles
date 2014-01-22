@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4457C7F18907FCF00B04028 /* fluidsim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4457C7718907FCF00B04028 /* fluidsim.cpp */; };
 		E4B63B9C188FCA9F00B4BEE3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B63B9B188FCA9F00B4BEE3 /* OpenGL.framework */; };
 		E4B63B9E188FCA9F00B4BEE3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B63B9D188FCA9F00B4BEE3 /* GLUT.framework */; };
-		E4B63BE5188FE2F200B4BEE3 /* fluidsim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */; };
 		E4B63BE7188FE2F200B4BEE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BDC188FE2F200B4BEE3 /* main.cpp */; };
 		E4B63BE8188FE2F200B4BEE3 /* openglutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */; };
 /* End PBXBuildFile section */
@@ -27,22 +27,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E4457C7418907FCF00B04028 /* array1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array1.h; sourceTree = "<group>"; };
+		E4457C7518907FCF00B04028 /* array2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array2.h; sourceTree = "<group>"; };
+		E4457C7618907FCF00B04028 /* array2_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array2_utils.h; sourceTree = "<group>"; };
+		E4457C7718907FCF00B04028 /* fluidsim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fluidsim.cpp; sourceTree = "<group>"; };
+		E4457C7818907FCF00B04028 /* fluidsim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fluidsim.h; sourceTree = "<group>"; };
+		E4457C7A18907FCF00B04028 /* blas_wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blas_wrapper.h; sourceTree = "<group>"; };
+		E4457C7B18907FCF00B04028 /* pcg_solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcg_solver.h; sourceTree = "<group>"; };
+		E4457C7C18907FCF00B04028 /* sparse_matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sparse_matrix.h; sourceTree = "<group>"; };
+		E4457C7D18907FCF00B04028 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		E4457C7E18907FCF00B04028 /* vec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
 		E4B63B98188FCA9F00B4BEE3 /* Liquid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Liquid; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B63B9B188FCA9F00B4BEE3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		E4B63B9D188FCA9F00B4BEE3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		E4B63BD5188FE2F100B4BEE3 /* array1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array1.h; sourceTree = "<group>"; };
-		E4B63BD6188FE2F200B4BEE3 /* array2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array2.h; sourceTree = "<group>"; };
-		E4B63BD7188FE2F200B4BEE3 /* array2_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array2_utils.h; sourceTree = "<group>"; };
-		E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fluidsim.cpp; sourceTree = "<group>"; };
-		E4B63BD9188FE2F200B4BEE3 /* fluidsim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fluidsim.h; sourceTree = "<group>"; };
 		E4B63BDC188FE2F200B4BEE3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = openglutils.cpp; sourceTree = "<group>"; };
 		E4B63BDE188FE2F200B4BEE3 /* openglutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openglutils.h; sourceTree = "<group>"; };
-		E4B63BE0188FE2F200B4BEE3 /* blas_wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blas_wrapper.h; sourceTree = "<group>"; };
-		E4B63BE1188FE2F200B4BEE3 /* pcg_solver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcg_solver.h; sourceTree = "<group>"; };
-		E4B63BE2188FE2F200B4BEE3 /* sparse_matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sparse_matrix.h; sourceTree = "<group>"; };
-		E4B63BE3188FE2F200B4BEE3 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
-		E4B63BE4188FE2F200B4BEE3 /* vec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec.h; sourceTree = "<group>"; };
 		E4B63BE9188FE2FD00B4BEE3 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +59,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4457C7318907FCF00B04028 /* CBLiquid */ = {
+			isa = PBXGroup;
+			children = (
+				E4457C7418907FCF00B04028 /* array1.h */,
+				E4457C7518907FCF00B04028 /* array2.h */,
+				E4457C7618907FCF00B04028 /* array2_utils.h */,
+				E4457C7718907FCF00B04028 /* fluidsim.cpp */,
+				E4457C7818907FCF00B04028 /* fluidsim.h */,
+				E4457C7918907FCF00B04028 /* pcgsolver */,
+				E4457C7D18907FCF00B04028 /* util.h */,
+				E4457C7E18907FCF00B04028 /* vec.h */,
+			);
+			path = CBLiquid;
+			sourceTree = "<group>";
+		};
+		E4457C7918907FCF00B04028 /* pcgsolver */ = {
+			isa = PBXGroup;
+			children = (
+				E4457C7A18907FCF00B04028 /* blas_wrapper.h */,
+				E4457C7B18907FCF00B04028 /* pcg_solver.h */,
+				E4457C7C18907FCF00B04028 /* sparse_matrix.h */,
+			);
+			path = pcgsolver;
+			sourceTree = "<group>";
+		};
 		E4B63B8F188FCA9F00B4BEE3 = {
 			isa = PBXGroup;
 			children = (
@@ -89,29 +114,12 @@
 		E4B63BD4188FE2F100B4BEE3 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E4B63BD5188FE2F100B4BEE3 /* array1.h */,
-				E4B63BD6188FE2F200B4BEE3 /* array2.h */,
-				E4B63BD7188FE2F200B4BEE3 /* array2_utils.h */,
-				E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */,
-				E4B63BD9188FE2F200B4BEE3 /* fluidsim.h */,
 				E4B63BDC188FE2F200B4BEE3 /* main.cpp */,
 				E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */,
 				E4B63BDE188FE2F200B4BEE3 /* openglutils.h */,
-				E4B63BDF188FE2F200B4BEE3 /* pcgsolver */,
-				E4B63BE3188FE2F200B4BEE3 /* util.h */,
-				E4B63BE4188FE2F200B4BEE3 /* vec.h */,
+				E4457C7318907FCF00B04028 /* CBLiquid */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		E4B63BDF188FE2F200B4BEE3 /* pcgsolver */ = {
-			isa = PBXGroup;
-			children = (
-				E4B63BE0188FE2F200B4BEE3 /* blas_wrapper.h */,
-				E4B63BE1188FE2F200B4BEE3 /* pcg_solver.h */,
-				E4B63BE2188FE2F200B4BEE3 /* sparse_matrix.h */,
-			);
-			path = pcgsolver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B63BE7188FE2F200B4BEE3 /* main.cpp in Sources */,
-				E4B63BE5188FE2F200B4BEE3 /* fluidsim.cpp in Sources */,
+				E4457C7F18907FCF00B04028 /* fluidsim.cpp in Sources */,
 				E4B63BE8188FE2F200B4BEE3 /* openglutils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

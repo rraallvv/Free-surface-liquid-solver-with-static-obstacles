@@ -17,6 +17,14 @@ const double M_PI = 3.1415926535897932384626433832795;
 #undef max
 #endif
 
+#ifndef MAX
+#define MAX(i,j) (i>j?i:j)
+#endif
+
+#ifndef MIN
+#define MIN(i,j) (i>j?j:i)
+#endif
+
 using std::min;
 using std::max;
 using std::swap;

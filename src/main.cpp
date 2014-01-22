@@ -32,9 +32,9 @@ FluidSim sim;
 //-------------
 int window_w = 500;
 int window_h = 500;
-double oldmousetime;
-Vec2f oldmouse;
-void display();
+float prev_x;
+float prev_y;
+
 void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 
@@ -122,22 +122,21 @@ void display(void)
 	glutSwapBuffers();
 }
 
-void mouse(int button, int state, int x, int y)
-{
-	Vec2f newmouse;
-	//double newmousetime=get_time_in_seconds();
-	
-	oldmouse=newmouse;
-	//oldmousetime=newmousetime;
+void mouse ( int button, int state, int x, int y ) {
+	prev_x = x;
+	prev_y = y;
 }
 
-void motion(int x, int y)
-{
-	Vec2f newmouse;
-	//double newmousetime=get_time_in_seconds();
+void motion ( int x, int y ) {
+	float s = 8.0;
 	
-	oldmouse=newmouse;
-	//oldmousetime=newmousetime;
+	Vec2f p = Vec2f(x/(float)window_w, 1.0f - y/(float)window_h);
+	Vec2f d = Vec2f(s * (x - prev_x)/(float)window_w, s * -(y - prev_y)/(float)window_h);
+	
+	sim.add_velocity(p, d);
+	
+	prev_x = x;
+	prev_y = y;
 }
 
 void idle() {

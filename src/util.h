@@ -5,6 +5,8 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <sys/time.h>
+#include <GLUT/GLUT.h>
 
 #ifndef M_PI
 const double M_PI = 3.1415926535897932384626433832795;
@@ -465,6 +467,34 @@ void write_matlab(std::ostream& output, const std::vector<T>& a, const char *var
       output<<"'";
    output<<";"<<std::endl;
    output.precision(old_precision);
+}
+
+static double getSeconds() {
+	struct timeval t;
+	gettimeofday(&t, NULL);
+	long msec = t.tv_sec*1e6 + t.tv_usec;
+	return msec/1e6;
+}
+
+static double dumpTime() {
+	double csec = getSeconds();
+	static double psec = csec;
+	double sec = csec - psec;
+	psec = csec;
+	return sec;
+}
+
+static void drawBitmapString(void *font, const char *string) {
+	while (*string) glutBitmapCharacter(font, *string++);
+}
+
+static void drawStr(void *font, const char* str, ...) {
+	va_list args;
+	char buffer[512];
+	va_start(args,str);
+	vsprintf(buffer,str,args);
+	va_end(args);
+	drawBitmapString(font, buffer);
 }
 
 #endif

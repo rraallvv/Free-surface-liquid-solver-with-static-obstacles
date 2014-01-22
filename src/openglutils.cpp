@@ -12,7 +12,7 @@
 void draw_circle2d(const Vec2f& centre, float rad, int segs)
 {
    glBegin(GL_POLYGON);
-   for(int i=0;i<segs;i++){
+   for(int i=0;i<segs;i++) {
       float cosine=rad*cos(i*2*M_PI/(float)(segs));
       float sine=rad* sin(i*2*M_PI/(float)(segs));
       glVertex2fv((Vec2f(cosine,sine) + centre).v);

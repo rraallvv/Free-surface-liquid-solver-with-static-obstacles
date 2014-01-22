@@ -10,7 +10,6 @@
 		E4B63B9C188FCA9F00B4BEE3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B63B9B188FCA9F00B4BEE3 /* OpenGL.framework */; };
 		E4B63B9E188FCA9F00B4BEE3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B63B9D188FCA9F00B4BEE3 /* GLUT.framework */; };
 		E4B63BE5188FE2F200B4BEE3 /* fluidsim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */; };
-		E4B63BE6188FE2F200B4BEE3 /* gluvi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BDA188FE2F200B4BEE3 /* gluvi.cpp */; };
 		E4B63BE7188FE2F200B4BEE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BDC188FE2F200B4BEE3 /* main.cpp */; };
 		E4B63BE8188FE2F200B4BEE3 /* openglutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */; };
 /* End PBXBuildFile section */
@@ -36,8 +35,6 @@
 		E4B63BD7188FE2F200B4BEE3 /* array2_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array2_utils.h; sourceTree = "<group>"; };
 		E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fluidsim.cpp; sourceTree = "<group>"; };
 		E4B63BD9188FE2F200B4BEE3 /* fluidsim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fluidsim.h; sourceTree = "<group>"; };
-		E4B63BDA188FE2F200B4BEE3 /* gluvi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gluvi.cpp; sourceTree = "<group>"; };
-		E4B63BDB188FE2F200B4BEE3 /* gluvi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gluvi.h; sourceTree = "<group>"; };
 		E4B63BDC188FE2F200B4BEE3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = openglutils.cpp; sourceTree = "<group>"; };
 		E4B63BDE188FE2F200B4BEE3 /* openglutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openglutils.h; sourceTree = "<group>"; };
@@ -97,8 +94,6 @@
 				E4B63BD7188FE2F200B4BEE3 /* array2_utils.h */,
 				E4B63BD8188FE2F200B4BEE3 /* fluidsim.cpp */,
 				E4B63BD9188FE2F200B4BEE3 /* fluidsim.h */,
-				E4B63BDA188FE2F200B4BEE3 /* gluvi.cpp */,
-				E4B63BDB188FE2F200B4BEE3 /* gluvi.h */,
 				E4B63BDC188FE2F200B4BEE3 /* main.cpp */,
 				E4B63BDD188FE2F200B4BEE3 /* openglutils.cpp */,
 				E4B63BDE188FE2F200B4BEE3 /* openglutils.h */,
@@ -170,7 +165,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B63BE6188FE2F200B4BEE3 /* gluvi.cpp in Sources */,
 				E4B63BE7188FE2F200B4BEE3 /* main.cpp in Sources */,
 				E4B63BE5188FE2F200B4BEE3 /* fluidsim.cpp in Sources */,
 				E4B63BE8188FE2F200B4BEE3 /* openglutils.cpp in Sources */,

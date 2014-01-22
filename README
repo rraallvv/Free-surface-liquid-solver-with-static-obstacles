@@ -1,0 +1,6 @@
+Free surface liquid solver with static obstacles.
+================================================
+
+This code combines the Christopher Batty's irregular solid boundary discretization with the 2nd order free surface pressure boundary condition of Enright et al. 2003
+
+source: https://cs.uwaterloo.ca/~c2batty/

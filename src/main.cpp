@@ -15,7 +15,8 @@
 using namespace std;
 
 //Try changing the grid resolution
-int grid_resolution = 25;
+int grid_width_resolution = 20;
+int grid_height_resolution = 30;
 int particles = 1500;
 
 //Display properties
@@ -39,37 +40,30 @@ void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 
 //Boundary definition - several circles in a circular domain.
+Vec2f c0(0.5f,0.5f);
+float rad0 = 0.2f;
+float rad1 = 0.3f;
 
-Vec2f c0(0.5f,0.5f), c1(0.7f,0.5f), c2(0.3f,0.35f), c3(0.5f,0.7f);
-float rad0 = 0.459f,  rad1 = 0.1f,  rad2 = 0.1f,   rad3 = 0.1f;
-
-float square_phi(const Vec2f& position, const Vec2f& centre, float radius) {
-	Vec2f p = position - centre;
+float boundary_phi(const Vec2f& position) {
+	Vec2f p = position - c0;
 	float a = atan2(p[1], p[0]);
 	float h = hypot(p[0], p[1]);
 	
-	if (abs(a) < 0.25 * M_PI || abs(a) > 0.75 * M_PI)
-		h *= abs(cos(a));
-	else
-		h *= abs(sin(a));
-
-	return h - radius;
-}
-
-float circle_phi(const Vec2f& position, const Vec2f& centre, float radius) {
-	return (dist(position,centre) - radius);
-}
-
-float boundary_phi(const Vec2f& position) {
-	float phi0 = -square_phi(position, c0, rad0);
-	float phi1 = circle_phi(position, c1, rad1);
-	float phi2 = square_phi(position, c2, rad2);
-	float phi3 = circle_phi(position, c3, rad3);
+	float phi;
 	
-	return phi0;
-	//return min(min(phi0,phi1),min(phi2,phi3));
+	float a0 = atan2(rad1, rad0);
+	
+	if (abs(a) < a0 || abs(a) > M_PI - a0) {
+		h *= abs(cos(a));
+		phi = rad0 - h;
+	}
+	else {
+		h *= abs(sin(a));
+		phi = rad1 - h;
+	}
+	
+	return phi;
 }
-
 
 //Main testing code
 //-------------
@@ -158,7 +152,7 @@ void keyboard( unsigned char key, int x, int y ) {
 int main(int argc, char **argv)
 {
 	//Set up the simulation
-	sim.initialize(grid_width, grid_resolution, grid_resolution);
+	sim.initialize(grid_width, grid_width_resolution, grid_height_resolution);
 	
 	//set up a circle boundary
 	sim.set_boundary(boundary_phi);

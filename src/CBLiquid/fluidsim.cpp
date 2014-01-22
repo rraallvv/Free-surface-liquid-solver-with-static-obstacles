@@ -271,14 +271,14 @@ Vec2f FluidSim::get_velocity(const Vec2f& position) {
 //Add velocity to the MAC grid.
 void FluidSim::add_velocity(const Vec2f& position, const Vec2f& velocity) {
 	
-	int i = (int)(position[0] * u.nj);
-	int j = (int)(position[1] * v.ni);
-
-	i = MAX(0, MIN(i, u.nj-1));
-	j = MAX(0, MIN(j, v.ni-1));
+	int i = (int)(position[0] * (u.ni-1));
+	int j = (int)(position[1] * (v.nj-1));
+	
+	i = MAX(0, MIN(i, u.ni-2));
+	j = MAX(0, MIN(j, v.nj-2));
 	
 	Vec2f sv = Vec2f(0.5 * velocity[0] * (float)u.nj, 0.5 * velocity[1] * (float)v.ni);
-			
+	
 	u(i,j) += sv[0];
 	u(i+1,j) += sv[0];
 	

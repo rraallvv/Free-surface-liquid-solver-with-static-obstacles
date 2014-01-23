@@ -15,8 +15,8 @@
 using namespace std;
 
 //Try changing the grid resolution
-int grid_width_resolution = 20;
-int grid_height_resolution = 30;
+int grid_width = 20;
+int grid_height = 30;
 int particles = 1500;
 
 //Display properties
@@ -24,8 +24,6 @@ bool draw_grid = false;
 bool draw_particles = true;
 bool draw_velocities = false;
 bool draw_boundaries = true;
-
-float grid_width = 1;
 
 FluidSim sim;
 
@@ -36,14 +34,11 @@ int window_h = 600;
 float prev_x;
 float prev_y;
 
-void mouse(int button, int state, int x, int y);
-void motion(int x, int y);
-
 //Boundary definition - several circles in a circular domain.
 float c0 = 0.5f;
 float c1 = 0.75f;
-float rad0 = 0.5f - 1.0f / (float) grid_width_resolution - 0.001f;
-float rad1 = 0.75 - 1.0f / (float) grid_width_resolution - 0.001f;
+float rad0 = 0.5f - 1.0f / (float) grid_width - 0.001f;
+float rad1 = 0.75 - 1.0f / (float) grid_width - 0.001f;
 
 float boundary_phi(const Vec2f& position) {
 	float p0 = position[0] - c0;
@@ -70,6 +65,23 @@ float boundary_phi(const Vec2f& position) {
 
 //Main testing code
 //-------------
+
+void init(int np, int gm, int gn)
+{
+	//Set up the simulation
+	sim.initialize(1, gm, gn);
+	
+	//set up a circle boundary
+	sim.set_boundary(boundary_phi);
+	
+	//Stick some liquid particles in the domain
+	for(int i = 0; i < particles; ++i) {
+		float x = -rand()/(float)RAND_MAX * rad0;
+		float y = (rand()/(float)RAND_MAX * 3.0f - 1.5f) * rad1;
+		Vec2f pt(x+c0,y+c1);
+		sim.add_particle(pt);
+	}
+}
 
 void display(void)
 {
@@ -160,19 +172,7 @@ void keyboard( unsigned char key, int x, int y ) {
 
 int main(int argc, char **argv)
 {
-	//Set up the simulation
-	sim.initialize(grid_width, grid_width_resolution, grid_height_resolution);
-	
-	//set up a circle boundary
-	sim.set_boundary(boundary_phi);
-	
-	//Stick some liquid particles in the domain
-	for(int i = 0; i < particles; ++i) {
-		float x = -rand()/(float)RAND_MAX * rad0;
-		float y = (rand()/(float)RAND_MAX * 3.0f - 1.5f) * rad1;
-		Vec2f pt(x+c0,y+01);
-		sim.add_particle(pt);
-	}
+	init(particles, grid_width, grid_height);
 	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GL_DOUBLE);

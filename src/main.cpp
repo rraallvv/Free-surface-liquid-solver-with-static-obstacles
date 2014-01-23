@@ -20,10 +20,10 @@ int grid_height = 30;
 int particles = 1500;
 
 //Display properties
-bool draw_grid = false;
+bool draw_grid = true;
 bool draw_particles = true;
 bool draw_velocities = false;
-bool draw_boundaries = true;
+bool draw_boundary = true;
 
 FluidSim sim;
 
@@ -83,17 +83,25 @@ void init(int np, int gm, int gn)
 	}
 }
 
+void show_fps(float dt)
+{
+	static unsigned int frames = 0;
+	static float total_t = 0;
+	total_t += dt;
+	drawStr(GLUT_BITMAP_HELVETICA_18, "FPS AGV: ~%.2f", frames/total_t);
+	frames++;
+}
+
 void display(void)
 {
 	float dt = dumpTime();
 	
-	Vec2f p = Vec2f(0.25, 0.25);
-	Vec2f d = Vec2f(0, 0.1);
+	//Vec2f p = Vec2f(0.25, 0.25);
+	//Vec2f d = Vec2f(0, 0.1);
+	//sim.add_velocity(p, d);
 	
-	sim.add_velocity(p, d);
-
 	sim.advance(dt);
-
+	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0, 1, 0, 1.5, -1, 1);
@@ -101,38 +109,47 @@ void display(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
-	glClear(GL_COLOR_BUFFER_BIT);
+	glPushMatrix();
+	{
+		glScalef(sim.ni/(sim.ni-2.0), sim.nj/(sim.nj-2.0), 1);
+		glTranslatef(-sim.dx, -sim.dx, 0);
 		
-	if(draw_grid) {
-		glColor3f(.5,.5,.5);
-		glLineWidth(1);
-		draw_grid2d(Vec2f(0,0), sim.dx, sim.ni, sim.nj);
-	}
-	
-	if(draw_particles) {
-		glColor3f(0,0,1);
-		glEnable( GL_POINT_SMOOTH );
-		glPointSize(6);
-		glColor3f(1,1,1);
-		draw_points2d(sim.particles);
-	}
-	
-	if(draw_velocities) {
-		glColor3f(1,1,0);
-		for(int j = 0;j < sim.nj; ++j) for(int i = 0; i < sim.ni; ++i) {
-			Vec2f pos((i+0.5f)*sim.dx,(j+0.5f)*sim.dx);
-			draw_arrow2d(pos, pos + 0.01f*sim.get_velocity(pos), 0.01f*sim.dx);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		if(draw_grid) {
+			glColor3f(.5,.5,.5);
+			glLineWidth(1);
+			draw_grid2d(Vec2f(0,0), sim.dx, sim.ni, sim.nj);
 		}
-	}
+		
+		if(draw_boundary) {
+			glColor3f(1,1,1);
+			glLineWidth(3);
+			draw_grid_box(Vec2f(1,1), sim.dx, sim.ni-2, sim.nj-2);
+		}
+		
+		if(draw_particles) {
+			glColor3f(0,0,1);
+			glEnable( GL_POINT_SMOOTH );
+			glPointSize(6);
+			glColor3f(1,1,1);
+			draw_points2d(sim.particles);
+		}
+		
+		if(draw_velocities) {
+			glColor3f(1,1,0);
+			for(int j = 0;j < sim.nj; ++j) for(int i = 0; i < sim.ni; ++i) {
+				Vec2f pos((i+0.5f)*sim.dx,(j+0.5f)*sim.dx);
+				draw_arrow2d(pos, pos + 0.01f*sim.get_velocity(pos), 0.01f*sim.dx);
+			}
+		}
+		
+	}glPopMatrix();
 	
 	glColor3f(1, 1, 1);
 	glRasterPos2d(0.01, 0.01);
-
-	static unsigned int frames = 0;
-	static float total_t = 0;
-	total_t += dt;
-	drawStr(GLUT_BITMAP_HELVETICA_18, "FPS AGV: ~%.2f", frames/total_t);
-	frames++;
+	
+	show_fps(dt);
 	
 	glutSwapBuffers();
 }
@@ -143,10 +160,16 @@ void mouse ( int button, int state, int x, int y ) {
 }
 
 void motion ( int x, int y ) {
+	float sx = (sim.ni - 2.0) / sim.ni;
+	float sy = (sim.nj - 2.0) / sim.nj;
+	
+	Vec2f p = Vec2f(sx * (x/(float)window_w + sim.dx),
+					sy * (1.0f - y/(float)window_h + sim.dx));
+	
 	float s = 8.0;
 	
-	Vec2f p = Vec2f(x/(float)window_w, 1.0f - y/(float)window_h);
-	Vec2f d = Vec2f(s * (x - prev_x)/(float)window_w, s * -(y - prev_y)/(float)window_h);
+	Vec2f d = Vec2f(s * sx * (x - prev_x)/(float)window_w,
+					s * sy * -(y - prev_y)/(float)window_h);
 	
 	sim.add_velocity(p, d);
 	

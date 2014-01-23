@@ -8,6 +8,7 @@
 void draw_circle2d(const Vec2f& centre, float rad, int segs);
 void draw_grid2d(const Vec2f& origin, float dx, int nx, int ny);
 void draw_box2d(const Vec2f& origin, float width, float height);
+void draw_grid_box(const Vec2f& origin, float dx, int nx, int ny);
 void draw_segmentset2d(const std::vector<Vec2f>& vertices, const std::vector<Vec2ui>& edges);
 void draw_segmentset2d(const std::vector<Vec2f>& vertices, const std::vector<Vec2i>& edges);
 void draw_points2d(const std::vector<Vec2f>& points);

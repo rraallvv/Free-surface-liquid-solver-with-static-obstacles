@@ -20,7 +20,7 @@ int grid_height_resolution = 30;
 int particles = 1500;
 
 //Display properties
-bool draw_grid = true;
+bool draw_grid = false;
 bool draw_particles = true;
 bool draw_velocities = false;
 bool draw_boundaries = true;
@@ -31,8 +31,8 @@ FluidSim sim;
 
 //Gluvi stuff
 //-------------
-int window_w = 500;
-int window_h = 500;
+int window_w = 400;
+int window_h = 600;
 float prev_x;
 float prev_y;
 
@@ -40,14 +40,17 @@ void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 
 //Boundary definition - several circles in a circular domain.
-Vec2f c0(0.5f,0.5f);
-float rad0 = 0.2f;
-float rad1 = 0.3f;
+float c0 = 0.5f;
+float c1 = 0.75f;
+float rad0 = 0.5f - 1.0f / (float) grid_width_resolution - 0.001f;
+float rad1 = 0.75 - 1.0f / (float) grid_width_resolution - 0.001f;
 
 float boundary_phi(const Vec2f& position) {
-	Vec2f p = position - c0;
-	float a = atan2(p[1], p[0]);
-	float h = hypot(p[0], p[1]);
+	float p0 = position[0] - c0;
+	float p1 = position[1] - c1;
+	
+	float a = atan2(p1, p0);
+	float h = hypot(p0, p1);
 	
 	float phi;
 	
@@ -71,12 +74,17 @@ float boundary_phi(const Vec2f& position) {
 void display(void)
 {
 	float dt = dumpTime();
+	
+	Vec2f p = Vec2f(0.25, 0.25);
+	Vec2f d = Vec2f(0, 0.1);
+	
+	sim.add_velocity(p, d);
 
 	sim.advance(dt);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, 1, 0, 1, -1, 1);
+	glOrtho(0, 1, 0, 1.5, -1, 1);
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -87,14 +95,6 @@ void display(void)
 		glColor3f(.5,.5,.5);
 		glLineWidth(1);
 		draw_grid2d(Vec2f(0,0), sim.dx, sim.ni, sim.nj);
-	}
-	
-	if(draw_boundaries) {
-		glColor3f(1,1,1);
-		glLineWidth(2);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		Vec2f c = c0 - Vec2f(rad0,rad0);
-		draw_box2d(c, 2*rad0, 2*rad0);
 	}
 	
 	if(draw_particles) {
@@ -112,6 +112,15 @@ void display(void)
 			draw_arrow2d(pos, pos + 0.01f*sim.get_velocity(pos), 0.01f*sim.dx);
 		}
 	}
+	
+	glColor3f(1, 1, 1);
+	glRasterPos2d(0.01, 0.01);
+
+	static unsigned int frames = 0;
+	static float total_t = 0;
+	total_t += dt;
+	drawStr(GLUT_BITMAP_HELVETICA_18, "FPS AGV: ~%.2f", frames/total_t);
+	frames++;
 	
 	glutSwapBuffers();
 }
@@ -160,9 +169,9 @@ int main(int argc, char **argv)
 	//Stick some liquid particles in the domain
 	for(int i = 0; i < particles; ++i) {
 		float x = -rand()/(float)RAND_MAX * rad0;
-		float y = (rand()/(float)RAND_MAX * 2.0f - 1.0f) * rad0;
-		Vec2f pt(x,y);
-		sim.add_particle(pt + c0);
+		float y = (rand()/(float)RAND_MAX * 3.0f - 1.5f) * rad1;
+		Vec2f pt(x+c0,y+01);
+		sim.add_particle(pt);
 	}
 	
 	glutInit(&argc, argv);

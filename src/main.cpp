@@ -20,10 +20,10 @@ int grid_height = 30;
 int particles = 1500;
 
 //Display properties
-bool draw_grid = true;
+bool draw_grid = false;
 bool draw_particles = true;
 bool draw_velocities = false;
-bool draw_boundary = true;
+bool draw_boundary = false;
 
 FluidSim sim;
 
